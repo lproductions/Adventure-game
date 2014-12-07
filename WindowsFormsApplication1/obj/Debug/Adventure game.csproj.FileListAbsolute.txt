@@ -1,0 +1,3 @@
+C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
