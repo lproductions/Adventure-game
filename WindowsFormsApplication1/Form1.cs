@@ -24,6 +24,7 @@ namespace WindowsFormsApplication1 {
         double temp= 35.0D;
         bool day = true;
         bool ismoved = false;
+        bool isviewingmap = false;
         area[] land;
         System.Timers.Timer aTimer;
 
@@ -46,9 +47,16 @@ namespace WindowsFormsApplication1 {
                 if (ready) {
                     if (text123.ToLower().Equals("map")) {
 
-
+                        isviewingmap = true;
                         mainsetup();
+richTextBox1.Text += Environment.NewLine + Environment.NewLine
+  if(isviewingmap){
+                for(int i=0; i<255;i++){
+                    richTextBox1.Text += 
 
+}
+
+}
 
 
                     }
@@ -125,6 +133,7 @@ namespace WindowsFormsApplication1 {
 
 
         void mainsetup() {
+if(!isviewingmap){
             if (!ismoved) {
                 setTextBox(namedisplay + Health + Armour + Coordinates + ( Math.Truncate(temp * 100) / 100) + "C                    " +  
                     Environment.NewLine + Environment.NewLine + Environment.NewLine + "you spawn in " + land[xcoordinate + (ycoordinate * 16)].description);
@@ -133,6 +142,7 @@ namespace WindowsFormsApplication1 {
                 setTextBox(namedisplay + Health + Armour + Coordinates + (Math.Truncate(temp * 100) / 100) + "C                    " +  
                     Environment.NewLine + Environment.NewLine + Environment.NewLine + "you are in  " + land[xcoordinate + (ycoordinate * 16)].description);
             }
+}
            
             //name
             richTextBox1.Select(0, name.Length - 1);
@@ -174,6 +184,8 @@ namespace WindowsFormsApplication1 {
 
             richTextBox1.Select(richTextBox1.Text.IndexOf((Math.Truncate(temp * 100) / 100).ToString()) + (Math.Truncate(temp * 100) / 100).ToString().Length + 1, richTextBox1.Text.Length);
             richTextBox1.SelectionColor = Color.Black;
+
+          
             namepicked = true;
             
         }
