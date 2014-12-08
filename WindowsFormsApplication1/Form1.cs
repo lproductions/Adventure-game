@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1 {
             }
             InitializeComponent();
             textBox2.KeyDown += new KeyEventHandler(textBox2_KeyPress);
-            richTextBox1.Text = "What is though Adventures Name";
+            richTextBox1.Text = "What is thou Adventures Name";
 
 
 
@@ -54,9 +54,9 @@ namespace WindowsFormsApplication1 {
                     }
                 }
                 else {
-                    if (text123.ToLower().Equals("yes")) {
+                    if (text123.ToLower().Equals("yes") | text123.ToLower().Equals("yea") | text123.ToLower().Equals("ok")) {
                         richTextBox1.Text = "Lets Go";
-                        Task.Delay(3500).Wait();
+                        Task.Delay(2000).Wait();
                         mainsetup();
                        
                         aTimer = new System.Timers.Timer(500);

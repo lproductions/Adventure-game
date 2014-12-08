@@ -1,3 +1,12 @@
 C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Users\liam j\coding\visual studio\Adventure game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\Adventure game.csprojResolveAssemblyReference.cache
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\liam j\coding\visual studio\Adventure-game\WindowsFormsApplication1\obj\Debug\Adventure game.csproj.GenerateResource.Cache
