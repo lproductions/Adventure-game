@@ -13,9 +13,9 @@ namespace WindowsFormsApplication1 {
     public partial class Form1 : Form {
         string Health = "Health : 10                    ";
         string Armour = "Armour : 10                    ";
-        string Coordinates = "Location: 8,8                    ";
-        int xcoordinate = 8;
-        int ycoordinate = 8;
+        string Coordinates = "Location: 15,3                   ";
+        int xcoordinate = 15;
+        int ycoordinate = 3;
         bool namepicked = false;
         bool ready = false;
         string name;
@@ -25,13 +25,15 @@ namespace WindowsFormsApplication1 {
         bool day = true;
         bool ismoved = false;
         bool isviewingmap = false;
+        string temperture = "35.0C                    ";
+       string maptext = "";
         area[] land;
         System.Timers.Timer aTimer;
 
         public Form1() {
-            Random r1 = new Random(DateTime.Now.Millisecond * DateTime.Now.Minute + DateTime.Now.Month / DateTime.Now.Hour * DateTime.Now.Second);
+            Random r1 = new Random(DateTime.Now.Millisecond * DateTime.Now.Minute + DateTime.Now.Month + DateTime.Now.Hour * DateTime.Now.Second);
             land = new area[256];
-            for (int i = 0; i < 255;i++ ) {
+            for (int i = 0; i < 256;i++ ) {
                 land[i] = new area(r1);
             }
             InitializeComponent();
@@ -46,39 +48,58 @@ namespace WindowsFormsApplication1 {
             if (namepicked == true) {
                 if (ready) {
                     if (text123.ToLower().Equals("map")) {
-
+                        maptext = null;
                         isviewingmap = true;
                         mainsetup();
-richTextBox1.Text += Environment.NewLine + Environment.NewLine
-  if(isviewingmap){
-                for(int i=0; i<255;i++){
-                    richTextBox1.Text += 
+                        richTextBox1.Text += Environment.NewLine + Environment.NewLine;
+                        int h = 0;
+                            for (int i = 0; i < 256; i++) {
 
-}
+                                h++;
+                               
+                                    if(!land[i].explored){
+                                        Console.WriteLine(i);
+                                    maptext += "[" + "U" +"]";
+                                    }
+                                    else {
+                                        maptext += "[" + "E" + "]";
+                                    }
 
-}
 
+                                    if (h == 32) {
+                                        maptext += Environment.NewLine;
+                                        h = 0;
+                                    }
+                            }
+                        
 
                     }
-                }
-                else {
-                    if (text123.ToLower().Equals("yes") | text123.ToLower().Equals("yea") | text123.ToLower().Equals("ok")) {
-                        richTextBox1.Text = "Lets Go";
-                        Task.Delay(2000).Wait();
-                        mainsetup();
-                       
-                        aTimer = new System.Timers.Timer(500);
-                        // Hook up the Elapsed event for the timer. 
-                        aTimer.Elapsed += halfsecondupdate;
-                        aTimer.Enabled = true;
-                    }
+
 
                 }
+
+            else {
+                if (text123.ToLower().Equals("yes") | text123.ToLower().Equals("yea") | text123.ToLower().Equals("ok")) {
+                richTextBox1.Text = "Lets Go";
+                Task.Delay(2000).Wait();
+                mainsetup();
+
+                aTimer = new System.Timers.Timer(500);
+                // Hook up the Elapsed event for the timer. 
+                aTimer.Elapsed += halfsecondupdate;
+                aTimer.Enabled = true;
+                ready = true;
+            }
+
+        }
+
+
+
+
+
 
 
             }
-
-
             else {
                 name = text123;
                 namedisplay = "Name: " + text123 + "                    ";
@@ -89,18 +110,17 @@ richTextBox1.Text += Environment.NewLine + Environment.NewLine
                 richTextBox1.Text = story;
 
 
-               
+
                 story = null;
-                land[127].explored = true;
+                land[111].explored = true;
                 namepicked = true;
-                
 
 
-                
+
+
             }
             textBox2.Text = "";
         }
-
          
        
         void textBox2_KeyPress(object sender, System.Windows.Forms.KeyEventArgs e) {
@@ -133,16 +153,30 @@ richTextBox1.Text += Environment.NewLine + Environment.NewLine
 
 
         void mainsetup() {
-if(!isviewingmap){
+
             if (!ismoved) {
-                setTextBox(namedisplay + Health + Armour + Coordinates + ( Math.Truncate(temp * 100) / 100) + "C                    " +  
-                    Environment.NewLine + Environment.NewLine + Environment.NewLine + "you spawn in " + land[xcoordinate + (ycoordinate * 16)].description);
+                if (!isviewingmap) {
+                setTextBox(namedisplay + Health + Armour + Coordinates + temperture+  
+                    Environment.NewLine + Environment.NewLine + Environment.NewLine + "you spawn in " +
+                    land[xcoordinate + (ycoordinate * 16)].description);
+                }
+                else {
+                     setTextBox(namedisplay + Health + Armour + Coordinates + temperture+  
+                    Environment.NewLine + Environment.NewLine + Environment.NewLine + maptext);
+                }
             }
             if (ismoved) {
-                setTextBox(namedisplay + Health + Armour + Coordinates + (Math.Truncate(temp * 100) / 100) + "C                    " +  
-                    Environment.NewLine + Environment.NewLine + Environment.NewLine + "you are in  " + land[xcoordinate + (ycoordinate * 16)].description);
+                if (!isviewingmap) {
+                    setTextBox(namedisplay + Health + Armour + Coordinates + temperture +
+                        Environment.NewLine + Environment.NewLine + Environment.NewLine + "you are in " +
+                        land[xcoordinate + (ycoordinate * 16)].description);
+                }
+                else {
+                    setTextBox(namedisplay + Health + Armour + Coordinates + temperture +
+                        Environment.NewLine + Environment.NewLine + Environment.NewLine + maptext);
+                }
             }
-}
+
            
             //name
             richTextBox1.Select(0, name.Length - 1);
@@ -171,7 +205,7 @@ if(!isviewingmap){
 
             //temp
             richTextBox1.DeselectAll();
-            richTextBox1.Select(richTextBox1.Text.IndexOf((Math.Truncate(temp * 100) / 100).ToString()), richTextBox1.Text.IndexOf((Math.Truncate(temp * 100) / 100).ToString()) + (Math.Truncate(temp * 100) / 100).ToString().Length - 1);
+            richTextBox1.Select(richTextBox1.Text.IndexOf((temperture)), richTextBox1.Text.IndexOf(temperture.ToString()) + temperture.Length - 1);
             if (temp > 34) {
                 richTextBox1.SelectionColor = Color.Red;
             }
@@ -182,7 +216,7 @@ if(!isviewingmap){
             richTextBox1.DeselectAll();
 
 
-            richTextBox1.Select(richTextBox1.Text.IndexOf((Math.Truncate(temp * 100) / 100).ToString()) + (Math.Truncate(temp * 100) / 100).ToString().Length + 1, richTextBox1.Text.Length);
+           richTextBox1.Select(richTextBox1.Text.IndexOf(temperture) + (temperture.Length + 1), richTextBox1.Text.Length - 1);
             richTextBox1.SelectionColor = Color.Black;
 
           
@@ -192,7 +226,6 @@ if(!isviewingmap){
 
 
         void halfsecondupdate(Object source, ElapsedEventArgs e) {
-            callmainupdate();
             if (day) {
                 if (land[xcoordinate + (ycoordinate * 16)].weather == 0) {
                     temp += 0.01;
@@ -217,7 +250,12 @@ if(!isviewingmap){
                 }
 
             }
-            Console.Out.WriteLine(Math.Truncate(temp));
+
+            temperture = (Math.Truncate((temp * 100))   / 100).ToString() + " C                    ";
+                callmainupdate();
+                
+             
+            
         }
     }
 }

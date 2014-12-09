@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1 {
         public string description = "";
         static int test = 0;
         string environmentdescription = "";
+        
         public area(Random r) {
 
 
