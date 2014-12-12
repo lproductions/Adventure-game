@@ -33,9 +33,10 @@ namespace WindowsFormsApplication1 {
         bool deniedeast = false;
         area[] land;
         System.Timers.Timer aTimer;
+        Random r1;
 
         public Form1() {
-            Random r1 = new Random(DateTime.Now.Millisecond * DateTime.Now.Minute + DateTime.Now.Month + DateTime.Now.Hour * DateTime.Now.Second);
+            r1 = new Random(DateTime.Now.Millisecond * DateTime.Now.Minute + DateTime.Now.Month + DateTime.Now.Hour * DateTime.Now.Second);
             land = new area[256];
             for (int i = 0; i < 256;i++ ) {
                 land[i] = new area(r1);
@@ -44,16 +45,22 @@ namespace WindowsFormsApplication1 {
             richTextBox1.Font = new Font(FontFamily.GenericMonospace, richTextBox1.Font.Size);
             textBox2.KeyDown += new KeyEventHandler(textBox2_KeyPress);
             richTextBox1.Text = "What is thou Adventures Name";
-
+            pickreigningchamp();
 
 
         }
-
-        public void command(string text123) {
-            if (namepicked == true) {
-                if (ready) {
-                    if (text123.ToLower().Equals("map")) {
-                        maptext = null;
+        public void pickreigningchamp()
+        {
+            int reignarea = r1.Next(0,255);
+            while (reignarea == 78 | reignarea == 79 | reignarea == 80 | reignarea == 110 | reignarea == 111 | reignarea == 112 | reignarea == 142 | reignarea == 143 | reignarea == 144)
+            {
+                 reignarea = r1.Next(0, 255);
+            }
+            land[reignarea].biome = 50;
+        }
+        public void map()
+        {
+             maptext = null;
                         isviewingmap = true;
                         mainsetup();
                         richTextBox1.Text += Environment.NewLine + Environment.NewLine;
@@ -76,6 +83,16 @@ namespace WindowsFormsApplication1 {
                                         h = 0;
                                     }
                             }
+                        
+
+                    
+        }
+
+        public void command(string text123) {
+            if (namepicked == true) {
+                if (ready) {
+                    if (text123.ToLower().Equals("map")) {
+                        map();
                         
 
                     }
@@ -185,10 +202,12 @@ namespace WindowsFormsApplication1 {
             else {
                 name = text123;
                 namedisplay = "Name: " + text123 + "                    ";
-                story = "Now " + name + " I am the voice you will hear in your head every now and then" + Environment.NewLine +
-                        "You have been Cast under a Wizards spell so you cannot leave this area" + Environment.NewLine +
-                        "To Get Back to your home you must defeat this evil Wizard " + Environment.NewLine +
-                        "Unfortunatly you are under the control of the nearest person i could find so Are You Ready?";
+                story = "Now " + name + " I am the voice you will hear in your head every now and then." + Environment.NewLine +
+                        "Every year a young boy or girl is picked to enter this arena," + Environment.NewLine +
+                        "To get out you must beat the previous champion," + Environment.NewLine +
+                        "but beware after 50 days the previous champion will come looking for you so you best be ready." + Environment.NewLine +
+                        "Unfortunatly you are under control of a random spectator viewing you from his computer,"+ Environment.NewLine + 
+                        "So Are You Ready?";
                 richTextBox1.Text = story;
 
 
